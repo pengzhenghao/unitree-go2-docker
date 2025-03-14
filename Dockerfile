@@ -45,7 +45,7 @@ RUN bash -c "source /opt/ros/foxy/setup.bash && \
              pwd && \
              colcon build"
 # Double check whether the build was successful
-RUN ls -l /app/unitree_ros2/cyclonedds_ws/install
+RUN ls -l /app/unitree_ros2/cyclonedds_ws
 # ===== Installing unitree_ros2 =====
 
 # Create a dedicated directory for your application code

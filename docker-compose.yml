@@ -1,10 +1,15 @@
 services:
   go2:
-    image: pvp4real-go2:latest
+    image: unitree-go2-docker:latest
     ports:
       - "8080:8080"
-    volumes:
-      - .:/app
+
+    # We can't do this at this moment as in our repo we have `unitree_ros` as a submodule
+    # so `unitree_ros/install` will be empty in our repo but it should be generated during
+    # docker build.
+    # volumes:
+    #  - .:/app
+
     privileged: true
     network_mode: "host"
     stdin_open: true
