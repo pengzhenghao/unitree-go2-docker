@@ -51,11 +51,11 @@ RUN ls -l /app/unitree_ros2/cyclonedds_ws
 # Create a dedicated directory for your application code
 WORKDIR /app
 
-# Copy your docker_internal_start.sh script into /app
-COPY docker_internal_start.sh .
+# Copy your docker_internal_setup.sh script into /app
+COPY docker_internal_setup.sh .
 
-# Ensure that docker_internal_start.sh is executable
-RUN chmod +x docker_internal_start.sh
+# Ensure that docker_internal_setup.sh is executable
+RUN chmod +x docker_internal_setup.sh
 
 # Expose any ports your application uses (if applicable)
 EXPOSE 8080
