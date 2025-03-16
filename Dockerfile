@@ -18,6 +18,26 @@ RUN apt-get update && apt-get install -y \
 COPY . /app
 
 
+# ===== GStreamer =====
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-dev \
+    libgirepository1.0-dev \
+    libcairo2-dev \
+    pkg-config \
+    gir1.2-gtk-3.0 \
+    libgstreamer1.0-dev \
+    gir1.2-gstreamer-1.0 \
+    && rm -rf /var/lib/apt/lists/*
+# Install PyGObject using pip
+RUN pip3 install PyGObject
+# Run test file to check if PyGObject is installed correctly
+WORKDIR /app
+RUN python3 tests/test_gi.py
+# ===== GStreamer =====
+
+
 # ===== Installing unitree_sdk2 =====
 # Build the Unitree SDK:
 # Change to the unitree_sdk2 folder, make install.sh executable and run it,
@@ -54,6 +74,12 @@ WORKDIR /app
 
 # Copy your docker_internal_setup.sh script into /app
 COPY docker_internal_setup.sh .
+
+# Make sure that pip points to pip3
+RUN rm -f /usr/bin/pip && ln -sf /usr/bin/pip3 /usr/bin/pip
+
+# Make sure that python points to python3
+RUN rm -f /usr/bin/python && ln -sf /usr/bin/python3 /usr/bin/python
 
 # Ensure that docker_internal_setup.sh is executable
 RUN chmod +x docker_internal_setup.sh
