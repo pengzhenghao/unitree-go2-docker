@@ -7,8 +7,8 @@ trap 'echo "Bye! The Docker container is exiting."' EXIT
 # Source the ROS environment
 source /opt/ros/foxy/setup.bash
 
-# Optional: Source additional workspaces if necessary
-# source /app/your_workspace/install/setup.bash
+# Run go2 setup script
+source go2_ros2_setup.sh
 
 # Print an initialization message
 echo "Docker container initialized successfully. Listing active ROS topics:"

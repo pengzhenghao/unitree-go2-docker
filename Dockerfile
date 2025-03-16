@@ -15,20 +15,20 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy your entire repository into the container
-# TODO: We should avoid copying entire repo as user might update the pvp folder.
 COPY . /app
+
 
 # ===== Installing unitree_sdk2 =====
 # Build the Unitree SDK:
 # Change to the unitree_sdk2 folder, make install.sh executable and run it,
 # then create a build directory, run cmake and make.
-#WORKDIR /app/unitree_sdk2
-#RUN mkdir build && \
-#    cd build && \
-#    cmake .. && \
-#    sudo make install
-# TODO: As we are using Unitree ROS2, do we really need Unitree SDK???
+WORKDIR /app/unitree_sdk2
+RUN mkdir build && \
+    cd build && \
+    cmake .. && \
+    sudo make install
 # ===== Installing unitree_sdk2 =====
+
 
 # ===== Installing unitree_ros2 =====
 # Following https://github.com/unitreerobotics/unitree_ros2
@@ -48,6 +48,7 @@ RUN bash -c "source /opt/ros/foxy/setup.bash && \
 RUN ls -l /app/unitree_ros2/cyclonedds_ws
 # ===== Installing unitree_ros2 =====
 
+
 # Create a dedicated directory for your application code
 WORKDIR /app
 
@@ -57,9 +58,6 @@ COPY docker_internal_setup.sh .
 # Ensure that docker_internal_setup.sh is executable
 RUN chmod +x docker_internal_setup.sh
 
-# Expose any ports your application uses (if applicable)
-EXPOSE 8080
-
 # Set the entrypoint to start your application
-ENTRYPOINT ["./docker_internal_start.sh"]
+ENTRYPOINT ["./docker_internal_setup.sh"]
 CMD ["bash"]
