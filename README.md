@@ -1,7 +1,6 @@
 # docker-go2
+
 The tutorial and docker image to play with Unitree Go2 quadruped robot dog.
-
-
 
 ### 1. Prepare this repo
 
@@ -20,6 +19,7 @@ git submodule update --init --recursive
 Docker Engine is NOT Docker Desktop! Please do not install Docker Desktop!
 
 To install Docker Engine, please follow: https://docs.docker.com/engine/install/ubuntu/  For me, I've done:
+
 ```bash
 # Uninstall old versions:
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
@@ -58,13 +58,15 @@ sudo reboot
 docker run hello-world
 ```
 
-**An important note: Make sure running `ifconfig` will return the real network interfaces, 
-e.g. `enp8s0`, `wlp7s0`, etc. 
+**An important note: Make sure running `ifconfig` will return the real network interfaces,
+e.g. `enp8s0`, `wlp7s0`, etc.
 If it returns `eth0` but not your real network interface name,
-you have installed Docker Desktop, not Docker Engine. 
+you have installed Docker Desktop, not Docker Engine.
 Please uninstall Docker Desktop and install Docker Engine.**
 
-If you want to play with ROS2, you can run this to test communication between two ROS2 nodes, e.g. two containers or host and container.
+If you want to play with ROS2, you can run this to test communication between two ROS2 nodes, e.g. two containers or
+host and container.
+
 ```bash
 ros2 run demo_nodes_cpp talker
 # You will see the message "Hello World: 1" printed out in topic /chatter
@@ -72,7 +74,6 @@ ros2 run demo_nodes_cpp talker
 ros2 run demo_nodes_cpp listener
 # You will see the message "I heard: [Hello World: 1]" printed out in topic /chatter
 ```
-
 
 ### 2. Get the Docker image
 
