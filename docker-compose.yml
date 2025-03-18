@@ -20,4 +20,4 @@ services:
     tty: true
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-      - GO2_NETWORK_INTERFACE=enp8s0
+      - GO2_NETWORK_INTERFACE=enp118s0
