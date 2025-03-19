@@ -1,20 +1,11 @@
 #!/bin/bash
 set -e
 
-# Set up a trap to print a farewell message when the script exits.
-trap 'echo "Bye! The Docker container is exiting."' EXIT
-
 # Source the ROS environment
 source /opt/ros/foxy/setup.bash
 
 # Print an initialization message
-echo "Docker container initialized successfully. Listing active ROS topics:"
-
-# List active ROS topics
-ros2 topic list
-
-# Inform the user they're now in an interactive shell
-echo "Entering interactive shell with ROS2 environment. Enjoy!"
+echo "Docker container initialized successfully. ROS2 environment is now set up."
 
 # Execute the command passed as arguments (e.g., bash)
 exec "$@"
