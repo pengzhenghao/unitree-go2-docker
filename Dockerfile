@@ -69,6 +69,11 @@ RUN ls -l /app/unitree_ros2/cyclonedds_ws
 # ===== Installing unitree_ros2 =====
 
 
+# ===== Installing unitree_sdk2_python =====
+RUN pip3 install unitree_sdk2py==1.0.1
+# ===== Installing unitree_sdk2_python =====
+
+
 # Create a dedicated directory for your application code
 WORKDIR /app
 
