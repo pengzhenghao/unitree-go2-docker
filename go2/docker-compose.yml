@@ -1,0 +1,28 @@
+services:
+  go2:
+    image: unitree-go2:latest
+    #    ports:
+    #      - "8080:8080"
+
+    # We can't do this at this moment as in our repo we have `unitree_ros` as a submodule
+    # so `unitree_ros/install` will be empty in our repo but it should be generated during
+    # docker build.
+    # volumes:
+    #  - .:/app
+    volumes:
+      - ./src:/app/src
+      - ${HOME}/InternNav/scripts/realworld:/app/realworld
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    #      - /dev:/dev
+
+    privileged: true
+    network_mode: "host"
+    ipc: "host"
+    stdin_open: true
+    tty: true
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - GO2_NETWORK_INTERFACE=enp118s0
+      - DISPLAY=${DISPLAY:-:0}
+      - QT_X11_NO_MITSHM=1
+

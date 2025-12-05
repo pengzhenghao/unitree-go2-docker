@@ -1,0 +1,21 @@
+services:
+  booster:
+    image: booster-sdk:latest
+    #    ports:
+    #      - "8080:8080"
+    
+    volumes:
+      - ./src:/app/src
+      - ${HOME}/InternNav/scripts/realworld:/app/realworld
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+    privileged: true
+    network_mode: "host"
+    ipc: "host"
+    stdin_open: true
+    tty: true
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - DISPLAY=${DISPLAY:-:0}
+      - QT_X11_NO_MITSHM=1
+
