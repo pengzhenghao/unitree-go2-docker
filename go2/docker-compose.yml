@@ -1,19 +1,15 @@
 services:
   go2:
     image: unitree-go2:latest
-    #    ports:
-    #      - "8080:8080"
 
-    # We can't do this at this moment as in our repo we have `unitree_ros` as a submodule
-    # so `unitree_ros/install` will be empty in our repo but it should be generated during
-    # docker build.
-    # volumes:
-    #  - .:/app
     volumes:
       - ./src:/app/src
+      # Mount specific subdirectories to preserve build artifacts in the container
+      - ./unitree_ros2/cyclonedds_ws/src/unitree:/app/unitree_ros2/cyclonedds_ws/src/unitree
+      - ./unitree_ros2/cyclonedds_ws/src/cyclonedds.xml:/app/unitree_ros2/cyclonedds_ws/src/cyclonedds.xml
+      - ./unitree_ros2/example:/app/unitree_ros2/example
       - ${HOME}/InternNav/scripts/realworld:/app/realworld
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-    #      - /dev:/dev
 
     privileged: true
     network_mode: "host"
@@ -25,4 +21,5 @@ services:
       - GO2_NETWORK_INTERFACE=enp118s0
       - DISPLAY=${DISPLAY:-:0}
       - QT_X11_NO_MITSHM=1
-
+      - CYCLONEDDS_URI=file:///app/unitree_ros2/cyclonedds_ws/src/cyclonedds.xml
+      # - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
