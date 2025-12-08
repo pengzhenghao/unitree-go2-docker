@@ -82,6 +82,8 @@ WORKDIR /app/unitree_sdk2
 RUN echo "=========================================" && \
     echo "STEP 4/7: Building unitree_sdk2" && \
     echo "=========================================" && \
+    echo "Initializing submodules..." && \
+    git submodule update --init --recursive && \
     echo "Creating build directory..." && \
     mkdir -p build && \
     cd build && \
