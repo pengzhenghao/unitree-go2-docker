@@ -2,15 +2,9 @@
 <CycloneDDS>
     <Domain Id="any">
         <General>
-            <NetworkInterfaceAddress>enp118s0</NetworkInterfaceAddress>
-            <AllowMulticast>true</AllowMulticast>
+            <Interfaces>
+                <NetworkInterface name="enp2s0" priority="default" multicast="default" />
+            </Interfaces>
         </General>
-        <Discovery>
-            <ParticipantIndex>auto</ParticipantIndex>
-            <MaxAutoParticipantIndex>100</MaxAutoParticipantIndex>
-            <Peers>
-                <Peer address="192.168.123.18"/>
-            </Peers>
-        </Discovery>
     </Domain>
 </CycloneDDS>
