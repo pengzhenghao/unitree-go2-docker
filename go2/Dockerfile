@@ -82,8 +82,6 @@ WORKDIR /app/unitree_sdk2
 RUN echo "=========================================" && \
     echo "STEP 4/7: Building unitree_sdk2" && \
     echo "=========================================" && \
-    echo "Initializing submodules..." && \
-    git submodule update --init --recursive && \
     echo "Creating build directory..." && \
     mkdir -p build && \
     cd build && \
@@ -104,6 +102,7 @@ WORKDIR /app/unitree_ros2/cyclonedds_ws/src
 RUN echo "=========================================" && \
     echo "STEP 5/7: Building unitree_ros2 workspace" && \
     echo "=========================================" && \
+    cd /app/unitree_ros2/cyclonedds_ws/src && \
     echo "Cloning rmw_cyclonedds repository..." && \
     git clone https://github.com/ros2/rmw_cyclonedds -b foxy && \
     echo "✓ rmw_cyclonedds cloned" && \

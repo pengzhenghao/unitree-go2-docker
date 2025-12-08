@@ -4,9 +4,9 @@
 [submodule "unitree_ros2"]
 	path = unitree_ros2
 	url = https://github.com/unitreerobotics/unitree_ros2
-[submodule "go2/unitree_sdk2_submodule"]
+[submodule "go2/unitree_sdk2"]
 	path = go2/unitree_sdk2
 	url = https://github.com/unitreerobotics/unitree_sdk2.git
-[submodule "go2/unitree_ros2_submodule"]
+[submodule "go2/unitree_ros2"]
 	path = go2/unitree_ros2
 	url = https://github.com/unitreerobotics/unitree_ros2.git
