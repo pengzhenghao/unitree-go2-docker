@@ -19,4 +19,7 @@ echo "Go2 will use network interface: ${GO2_NETWORK_INTERFACE}"
 
 echo "Setting CycloneDDS URI"
 # Use the network interface specified by the user to fill in the CycloneDDS URI
-export CYCLONEDDS_URI="<CycloneDDS><Domain><General><Interfaces><NetworkInterface name=\"${GO2_NETWORK_INTERFACE}\" priority=\"default\" multicast=\"default\" /></Interfaces></General></Domain></CycloneDDS>"
+export CYCLONEDDS_URI="<CycloneDDS><Domain><General><NetworkInterfaceAddress>${GO2_NETWORK_INTERFACE}</NetworkInterfaceAddress><AllowMulticast>true</AllowMulticast></General><Discovery><ParticipantIndex>auto</ParticipantIndex><MaxAutoParticipantIndex>100</MaxAutoParticipantIndex><Peers><Peer address=\"192.168.123.18\"/></Peers></Discovery></Domain></CycloneDDS>"
+
+# Add a specific route for the robot subnet if possible (requires privilege, might fail in container but worth a try if host mode)
+# route add -net 192.168.123.0 netmask 255.255.255.0 dev ${GO2_NETWORK_INTERFACE} 2>/dev/null || true

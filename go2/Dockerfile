@@ -64,7 +64,7 @@ RUN echo "Installing PyGObject via pip..." && \
     echo "✓ PyGObject installed successfully"
 
 RUN echo "Installing Python dependencies for ROS2 scripts..." && \
-    pip3 install requests numpy Pillow scipy casadi && \
+    pip3 install requests "numpy>=1.19.5,<1.27.0" Pillow scipy casadi grpcio==1.62.0 grpcio-tools==1.62.0 "protobuf>=4.21.6" flask && \
     echo "✓ Python dependencies installed successfully"
 
 WORKDIR /app
