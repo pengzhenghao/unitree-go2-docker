@@ -73,7 +73,7 @@ To start the container:
 
 ## Shared Resources
 
-Each directory (`go2`, `booster`, `m20_pro`) contains its own copy of:
+Each directory (`go2` and `booster`) contains its own copy of:
 - `src/` - Source code and scripts.
 - `docker-compose.yml` - Container configuration.
 - `docker_internal_setup.sh` - Entrypoint script.
