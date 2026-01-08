@@ -1,0 +1,30 @@
+services:
+  m20_pro:
+    image: deeprobotics-m20-pro:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # If the official SDK/demo requires Ubuntu 20.04, switch this:
+        # UBUNTU_VERSION: "20.04"
+        UBUNTU_VERSION: "22.04"
+
+    # Robot networking is usually UDP; host networking keeps it simple.
+    network_mode: "host"
+    ipc: "host"
+    privileged: true
+
+    stdin_open: true
+    tty: true
+
+    volumes:
+      - ./src:/app/src
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - QT_X11_NO_MITSHM=1
+      # Override at runtime: ROBOT_IP=... ROBOT_UDP_PORT=... ./run.sh
+      - ROBOT_IP=${ROBOT_IP:-}
+      - ROBOT_UDP_PORT=${ROBOT_UDP_PORT:-8001}
+

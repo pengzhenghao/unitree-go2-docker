@@ -8,6 +8,7 @@ The project is organized into two self-contained directories:
 
 - `go2/` - Contains Docker setup and tools for Unitree Go2.
 - `booster/` - Contains Docker setup and tools for Booster SDK.
+- `m20_pro/` - Contains Docker setup and first-demo tooling for DeepRobotics M20 Pro.
 
 ## Prerequisites
 
@@ -72,9 +73,28 @@ To start the container:
 
 ## Shared Resources
 
-Each directory (`go2` and `booster`) contains its own copy of:
+Each directory (`go2`, `booster`, `m20_pro`) contains its own copy of:
 - `src/` - Source code and scripts.
 - `docker-compose.yml` - Container configuration.
 - `docker_internal_setup.sh` - Entrypoint script.
 
 Modifications in one folder will **not** affect the other.
+
+---
+
+## 3. DeepRobotics M20 Pro
+
+### Build
+
+```bash
+cd m20_pro
+./build.sh
+```
+
+### Run
+
+```bash
+./run.sh
+```
+
+See `m20_pro/README.md` for the tonight-ready checklist and UDP connectivity probe.
